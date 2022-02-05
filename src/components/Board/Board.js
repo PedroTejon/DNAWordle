@@ -5,16 +5,31 @@ export class Board extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            currentRow: 0,
-            currentColumn: 0,
+            wordList: ['', '', '', '', '', '']
         }
     }
     
+    modificarLista(palavra){
+        let wordList = this.state.wordList
+        wordList[this.props.currentRow] = palavra
+        return wordList
+    }
+    
+    aaa(){
+        let rows = []
+        this.state.wordList.forEach((row, x) => {
+            rows.push(<WordRow word={row} isSelected={x === this.props.currentRow ? "true" : "false"} maxLength={this.props.maxLength}/>)
+        })
+        return rows
+    }
+    
     render() {
-        let word = this.props.currentWord
+        if (this.state.wordList[this.props.currentRow] !== this.props.currentWord){
+            this.setState({wordList: this.modificarLista(this.props.currentWord)})
+        }
         return(
             <div>
-                <WordRow word={word} maxLength={this.props.maxLength}/>
+                {this.aaa()}
             </div>
         )
     }

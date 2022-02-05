@@ -5,21 +5,21 @@ export class Keyboard extends React.Component{
         return (
             <div style={{display:'flex', flexDirection:'column', justifyContent:'center', width:'30vw'}}>
                 <div style={{display:'flex', flexDirection:'row'}}>
-                    {['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'].map(
+                    {['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'].map(
                         (n) => {
                             return <button onClick={() => this.props.keyHandler(n)}>{n}</button>
                         })
                     }
                 </div>
                 <div style={{display:'flex', flexDirection:'row'}}>
-                    {['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'].map(
+                    {['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'].map(
                             (n) => {
                                 return <button onClick={() => this.props.keyHandler(n)}>{n}</button>
                         })
                     }
                 </div>
                 <div style={{display:'flex', flexDirection:'row'}}>
-                    {['Enter', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Backspace'].map(
+                    {['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Backspace'].map(
                             (n) => {
                                 return <button onClick={() => this.props.keyHandler(n)}>{n}</button>
                         })

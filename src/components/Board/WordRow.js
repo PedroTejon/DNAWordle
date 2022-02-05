@@ -3,7 +3,12 @@ import {LetterBox} from './LetterBox'
 
 export class WordRow extends React.Component{
     render() {
-        let word = this.props.word + '_    '
+        let word
+        if (this.props.isSelected === "true"){
+            word = this.props.word + '_    '
+        } else{
+            word = this.props.word + '     '
+        }
         return (
             <div style={{
                 display: 'flex',
