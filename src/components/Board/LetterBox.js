@@ -2,8 +2,15 @@ import React from 'react';
 
 export class LetterBox extends React.Component{
     render() {
+        const colors = {
+            3: 'green',
+            2: 'yellow',
+            1: 'gray',
+            0: 'white'
+        }
         return (
             <div style={{
+                backgroundColor: colors[this.props.color],
                 display: 'flex',
                 width:'5vw',
                 height:'10vh',
