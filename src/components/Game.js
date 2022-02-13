@@ -1,5 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Board } from './Board/Board'
 import { Keyboard } from './Keyboard/Keyboard'
 
@@ -11,24 +10,25 @@ export class Game extends React.Component{
             lock: false,
             currentRow: 0,
             currentWord: '',
-            secretWord: 'AAABA',
+            secretWord: 'FEDOR',
             passedColorCode: [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
         }
     }
     
     updateWord(input) {
         if (!this.state.lock){
-            if(input === 'Backspace'){
+            if(input === '←' || input === 'Backspace'){
                 if(this.state.currentWord.length > 0) {
                     this.setState({currentWord: this.state.currentWord.substring(0, this.state.currentWord.length - 1)})
                 }
-            } else if(input === 'Enter'){
-                if(this.state.currentWord.length === this.state.maxLength && this.state.currentRow !== 5){
-                    if (this.state.secretWord === this.state.currentWord){
+            } else if(input === '↤' || input === 'Enter'){
+                if(this.state.currentWord.length === this.state.maxLength){
+                    if (this.state.secretWord === this.state.currentWord || this.state.currentRow === 5){
                         this.setState({lock: true})
                     }
-                    else{
-                        this.setState({currentRow:this.state.currentRow + 1, currentWord:''})
+                    else if (this.state.currentRow !== 5){
+                            this.setState({currentWord:''})
+                            this.setState({currentRow:this.state.currentRow + 1})
                     }
                     this.setState({
                         passedColorCode: replaceArray(this.state.passedColorCode, this.state.currentRow, avaliateWord(this.state.currentWord, this.state.secretWord))
@@ -46,7 +46,14 @@ export class Game extends React.Component{
         let currentRow = this.state.currentRow
         let colorCode = this.state.passedColorCode
         return(
-            <div onKeyDown={(n) => this.updateWord(n.key)} tabIndex="0">
+            <div onKeyDown={(n) => this.updateWord(n.key)} tabIndex="0" style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width:"100vw",
+                    height:"100vh"
+                }}>
                 <Board maxLength={this.state.maxLength} currentWord={word} currentRow={currentRow} colorCode={colorCode}/>
                 <Keyboard maxLength={this.state.maxLength} keyHandler={(n) => this.updateWord(n)}/>
             </div>
@@ -69,6 +76,7 @@ function avaliateWord(currentWord, secretWord){
     for(let i = 0; i < secretWord.length; i++){
         if(secretWord[i] !== currentWord[i] && secretWordTemp.includes(currentWord[i])){
             avaliation[i] = 2
+            secretWordTemp = replaceIndex(secretWordTemp, secretWordTemp.indexOf(currentWord[i]), '#')
         }
     }
     

@@ -13,7 +13,7 @@ export class LetterBox extends React.Component{
                 backgroundColor: colors[this.props.color],
                 display: 'flex',
                 width:'5vw',
-                height:'10vh',
+                height:'9vh',
                 border: 'gray solid 1px',
                 borderRadius: '20%',
                 justifyContent: 'center',

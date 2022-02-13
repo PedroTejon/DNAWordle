@@ -9,3 +9,35 @@
 *:focus{
   outline: none !important;
 }
+
+#root{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.keyButtons{
+  background-color: #d1d5db;
+  display: flex;
+  width: 2.5vw;
+  height: 5vh;
+  z-index: 10;
+  border: none;
+  border-radius: 20%;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  padding-bottom: 1vh;
+  transition: transform 0.1s;
+}
+
+.keyButtons:hover{
+  background-color: #848b98;
+}
+
+.keyButtons:active{
+  background-color: #6b7280;
+  transform: translateY(0.3vh);
+}

@@ -18,7 +18,7 @@ export class Board extends React.Component{
     aaa(){
         let rows = []
         this.state.wordList.forEach((row, x) => {
-            rows.push(<WordRow word={row} isSelected={x === this.props.currentRow ? "true" : "false"} maxLength={this.props.maxLength} colors={this.props.colorCode[x]}/>)
+            rows.push(<WordRow word={row} key={x} isSelected={x === this.props.currentRow ? "true" : "false"} maxLength={this.props.maxLength} colors={this.props.colorCode[x]}/>)
         })
         return rows
     }
@@ -28,7 +28,7 @@ export class Board extends React.Component{
             this.setState({wordList: this.modificarLista(this.props.currentWord)})
         }
         return(
-            <div>
+            <div style={{display:'flex', flexDirection:'column', gap:'0.5vw'}}>
                 {this.aaa()}
             </div>
         )

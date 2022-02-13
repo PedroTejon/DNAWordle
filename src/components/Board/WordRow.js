@@ -11,7 +11,7 @@ export class WordRow extends React.Component{
         }
         let boxes = []
         for (let i = 0; i < 5; i++){
-            boxes.push(<LetterBox letter={word[i]} color={this.props.colors[i]}/>)
+            boxes.push(<LetterBox key={i} letter={word[i]} color={this.props.colors[i]}/>)
         }
         return boxes
     }
@@ -22,7 +22,7 @@ export class WordRow extends React.Component{
             <div style={{
                 display: 'flex',
                 flexDirection: 'row',
-                gap: '1vw'
+                gap: '0.5vw'
             }}>
                 {this.a()}
             </div>
